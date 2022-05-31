@@ -13,9 +13,6 @@ export const inputStyles = StyleSheet.create({
         width:'60%'
     },
     buttonNewLoad: {
-        // position:"absolute",
-        // top:'110%',
-
         minWidth: "70%",
     },
     inputTitle: {

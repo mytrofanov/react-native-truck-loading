@@ -3,7 +3,6 @@ import {createSlice} from "@reduxjs/toolkit"
 const truckSlice = createSlice({
     name: "truckLoading",
     initialState: {
-        truckNumber: null,
         trip: [],
         averageWeight: 0
     },
