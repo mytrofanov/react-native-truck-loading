@@ -61,13 +61,9 @@ const InputForm = () => {
                         addTrip()
                     }}
             />
-            {/*{trip.length > 0 ? trip.forEach(item=>*/}
-            {/*    <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>*/}
-            {/*) : null }*/}
-
-            {trip.forEach(item=>
-                <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>)
-            }
+            {trip.length > 0 ? trip.map(item=>
+                <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>
+            ) : null }
 
         </View>
     );
