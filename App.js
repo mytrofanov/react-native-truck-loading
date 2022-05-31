@@ -1,3 +1,4 @@
+import React  from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {View} from 'react-native';
 import {styles} from "./src/styles/appStyles";
@@ -6,7 +7,10 @@ import store from './src/Store/store'
 import InputForm from "./src/Components/inputForm";
 import OutputData from "./src/Components/outputData";
 
+
+
 export default function App() {
+
 
 
     return (
@@ -14,7 +18,7 @@ export default function App() {
 
             <View style={styles.container}>
                 <OutputData/>
-                <InputForm/>
+                <InputForm   />
                 <StatusBar style="auto"/>
             </View>
 

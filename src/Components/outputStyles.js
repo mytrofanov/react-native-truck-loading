@@ -3,9 +3,7 @@ import {StyleSheet} from "react-native";
 export const outputStyles = StyleSheet.create({
     outputContainer: {
         position:"absolute",
-        top: '20%',
-        // flex: 1,
-        // backgroundColor: 'black',
+        top: '15%',
         alignItems: 'center',
         justifyContent: 'center',
     },

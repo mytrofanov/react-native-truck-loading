@@ -3,10 +3,8 @@ import {StyleSheet} from "react-native";
 export const inputStyles = StyleSheet.create({
     inputContainer: {
         position:"absolute",
-        top: '40%',
+        top: '30%',
         width:'100%',
-        // flex: 1,
-        // backgroundColor: 'black',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -16,7 +14,7 @@ export const inputStyles = StyleSheet.create({
     },
     buttonNewLoad: {
         position:"absolute",
-        top:'150%',
+        top:'110%',
 
         minWidth: "70%",
     },

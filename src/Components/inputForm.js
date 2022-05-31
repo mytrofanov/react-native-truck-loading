@@ -3,27 +3,39 @@ import {Button, TextInput} from "@react-native-material/core";
 import {Text, View} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {inputStyles} from "./inputStyles";
-import {setTrip} from "../../redux/truckSlice";
+import {setAverageWeight, setTrip} from "../../redux/truckSlice";
+import TableOfTrips from "./tableOfTrips";
 
 const InputForm = () => {
-    const dispatch = useDispatch();
     const trip = useSelector(state => state.truckStore.trip)
-    const date = new Date();
-    const hoursAndMinutes = date.getHours() + ':' + date.getMinutes();
+    const dispatch = useDispatch();
+
+
+    const countAverageWeight = () => {
+        let weight = 0
+        trip.forEach(item =>
+            weight += item.loadWeight
+        )
+        dispatch(setAverageWeight(Math.floor(weight/trip.length)))
+    }
     const [ekg, setEkg] = useState(0)
     const [truckLoad, setTruckLoad] = useState(0)
+    const date = new Date();
+    const hoursAndMinutes = date.getHours() + ':' + date.getMinutes()
     const addTrip = () => {
-        dispatch(setTrip({excavator: ekg, loadWeight: truckLoad, time: hoursAndMinutes}))
-    }
-
+            dispatch(setTrip({excavator: ekg, loadWeight: truckLoad, time: hoursAndMinutes}))
+        }
+    ;
     console.log('hoursAndMinutes: ', hoursAndMinutes);
     console.log('ekg: ', ekg)
     console.log('truckLoad: ', truckLoad)
-    console.log('trip: ', trip)
+    console.log('trip.length: ', trip.length)
 
     useEffect(() => {
+        countAverageWeight()
         console.log('trip in useEffect: ', trip)
     }, [trip])
+
 
     return (
         <View style={inputStyles.inputContainer}>
@@ -49,6 +61,14 @@ const InputForm = () => {
                         addTrip()
                     }}
             />
+            {/*{trip.length > 0 ? trip.forEach(item=>*/}
+            {/*    <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>*/}
+            {/*) : null }*/}
+
+            {trip.forEach(item=>
+                <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>)
+            }
+
         </View>
     );
 };
