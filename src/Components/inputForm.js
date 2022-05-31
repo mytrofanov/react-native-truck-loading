@@ -25,6 +25,10 @@ const InputForm = () => {
     const addTrip = () => {
         if (ekg && truckLoad !== 0) {
             dispatch(setTrip({excavator: ekg, loadWeight: truckLoad, time: hoursAndMinutes}))
+            myEKGTextInput.current.clear();
+            myWeightTextInput.current.clear();
+            setEkg(0)
+            setTruckLoad(0)
         }
         }
     ;
@@ -37,7 +41,8 @@ const InputForm = () => {
         countAverageWeight()
         console.log('trip in useEffect: ', trip)
     }, [trip])
-
+    let myEKGTextInput = React.createRef();
+    let myWeightTextInput = React.createRef();
 
     return (
         <View style={inputStyles.inputContainer}>
@@ -47,7 +52,7 @@ const InputForm = () => {
                 style={inputStyles.textInputStyles}
                 keyboardType='numeric'
                 onChangeText={newEkg => setEkg(Number(newEkg))}
-
+                ref={myEKGTextInput}
             />
             <Text style={inputStyles.inputTitle}>Вигрузка т.:</Text>
             <TextInput
@@ -55,7 +60,7 @@ const InputForm = () => {
                 style={inputStyles.textInputStyles}
                 keyboardType='numeric'
                 onChangeText={newLoad => setTruckLoad(Number(newLoad))}
-
+                ref={myWeightTextInput}
             />
             <Button title="НОВА ХОДКА"
                     style={inputStyles.buttonNewLoad}
