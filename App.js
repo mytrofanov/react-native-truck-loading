@@ -1,30 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import {styles} from "./styles/appStyles";
-import { Button, TextInput} from "@react-native-material/core";
+import {StatusBar} from 'expo-status-bar';
+import {View} from 'react-native';
+import {styles} from "./src/styles/appStyles";
+import {Provider} from 'react-redux';
+import store from './src/Store/store'
+import InputForm from "./src/Components/inputForm";
+import OutputData from "./src/Components/outputData";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
 
-        <Button title="НОВА ЗМІНА" style={styles.buttonNewShift}/>
-        <Text style={styles.textStyles}>Середня загрузка: </Text>
-        <Text style={styles.tonnStyles}>131</Text>
 
-        <TextInput
-            variant="outlined" label="ЭКГ №:"
-            style={styles.textInputStyles}
-            keyboardType='numeric'
-        />
-        <TextInput
-            variant="outlined" label="Вигрузка т.:"
-            style={styles.textInputStyles}
-            keyboardType='numeric'
-        />
-        <Button title="НОВА ХОДКА" style={styles.buttonNewLoad}/>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <Provider store={store}>
+            <View style={styles.container}>
+                <OutputData/>
+                <InputForm/>
+                <StatusBar style="auto"/>
+            </View>
+        </Provider>
+    );
 }
 
 
