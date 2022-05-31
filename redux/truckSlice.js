@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import {createSlice} from "@reduxjs/toolkit"
 
 const truckSlice = createSlice({
     name: "truckLoading",
@@ -12,12 +12,14 @@ const truckSlice = createSlice({
             const newTrip = action.payload
             state.trip = state.trip.concat(newTrip)
         },
+        setZeroTrip: (state, action) => {
+            state.trip = action.payload
+        },
         setAverageWeight: (state, action) => {
             state.averageWeight = action.payload
         },
     },
-
 })
 
-export const { setTrip, setAverageWeight } = truckSlice.actions
+export const {setTrip, setAverageWeight,setZeroTrip} = truckSlice.actions
 export default truckSlice.reducer

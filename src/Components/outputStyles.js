@@ -9,7 +9,7 @@ export const outputStyles = StyleSheet.create({
     },
     buttonNewShift: {
         position:"absolute",
-        top:'-190%'
+        top:'-180%'
     },
     textStyles: {
         color:'orange',
