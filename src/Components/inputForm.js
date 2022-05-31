@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, TextInput} from "@react-native-material/core";
-import {Text, View} from "react-native";
+import {Text, View, ScrollView,  SafeAreaView} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {inputStyles} from "./inputStyles";
 import {setAverageWeight, setTrip} from "../../redux/truckSlice";
@@ -16,14 +16,16 @@ const InputForm = () => {
         trip.forEach(item =>
             weight += item.loadWeight
         )
-        dispatch(setAverageWeight(Math.floor(weight/trip.length)))
+        dispatch(setAverageWeight(Math.floor(weight / trip.length)))
     }
     const [ekg, setEkg] = useState(0)
     const [truckLoad, setTruckLoad] = useState(0)
     const date = new Date();
     const hoursAndMinutes = date.getHours() + ':' + date.getMinutes()
     const addTrip = () => {
+        if (ekg && truckLoad !== 0) {
             dispatch(setTrip({excavator: ekg, loadWeight: truckLoad, time: hoursAndMinutes}))
+        }
         }
     ;
     console.log('hoursAndMinutes: ', hoursAndMinutes);
@@ -61,10 +63,16 @@ const InputForm = () => {
                         addTrip()
                     }}
             />
-            {trip.length > 0 ? trip.map(item=>
-                <TableOfTrips date={item.time} ekg={item.excavator} weight={item.loadWeight}/>
-            ) : null }
-
+            <View style={{flex: 1}}>
+                <SafeAreaView style={{flex: 1,height:250}}>
+                    <ScrollView >
+                        {trip.length > 0 ? trip.map((item, index) =>
+                            <TableOfTrips key={index} index={index} date={item.time} ekg={item.excavator}
+                                          weight={item.loadWeight}/>
+                        ) : null}
+                    </ScrollView>
+                </SafeAreaView>
+            </View>
         </View>
     );
 };

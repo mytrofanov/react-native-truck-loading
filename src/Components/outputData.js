@@ -10,7 +10,7 @@ const OutputData = () => {
 
     return (
         <View style={outputStyles.outputContainer}>
-            <Button title="НОВА ЗМІНА" style={outputStyles.buttonNewShift}/>
+            <Button title="ВИДАЛИТИ ВСЕ" style={outputStyles.buttonNewShift} color={'red'}/>
             <Text style={outputStyles.textStyles}>Середня загрузка: </Text>
             <Text style={outputStyles.tonnStyles}>{averageWeight > 0 ? averageWeight : 0}</Text>
         </View>

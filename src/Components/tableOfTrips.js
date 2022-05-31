@@ -1,15 +1,12 @@
 import React from 'react';
-import {View, Text} from "react-native";
-// import {Text} from "@react-native-material/core";
+import {Text} from "react-native";
 import {tableStyles} from "./tableStyles";
 
-const TableOfTrips = ({ekg,date,weight}) => {
+const TableOfTrips = ({ekg,date,weight, index}) => {
     return (
-        <View>
             <Text style={tableStyles.tableText}>
-                Ходка в: {date}, ЕКГ№ {ekg}, Вигрузка: {weight} т.
+                Ходка {index+1} в: {date}, ЕКГ№ {ekg}, Вигрузка: {weight} т.
             </Text>
-        </View>
     );
 };
 
