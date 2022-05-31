@@ -20,4 +20,12 @@ export const inputStyles = StyleSheet.create({
 
         minWidth: "70%",
     },
+    inputTitle: {
+        width:'60%',
+        color:'orange',
+        textAlign:"left",
+        marginBottom:'-3%',
+        textTransform:'uppercase'
+    },
+
 });

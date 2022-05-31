@@ -11,11 +11,14 @@ export default function App() {
 
     return (
         <Provider store={store}>
+
             <View style={styles.container}>
                 <OutputData/>
                 <InputForm/>
                 <StatusBar style="auto"/>
             </View>
+
+
         </Provider>
     );
 }

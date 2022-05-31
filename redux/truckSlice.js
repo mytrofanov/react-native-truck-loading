@@ -1,15 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 const truckSlice = createSlice({
     name: "truckLoading",
     initialState: {
         truckNumber: null,
-        trip: [{excavator:89, loadWeight:130, time: 20-40}],
+        trip: [],
         averageWeight: 130
     },
-    setTrip: (state, action) => {
-        return {...state.trip, trip:action.trip}
+    reducers: {
+        setTrip: (state, action) => {
+            const newTrip = action.payload
+            state.trip = state.trip.concat(newTrip)
+        },
     },
+
 })
 
 export const { setTrip } = truckSlice.actions
