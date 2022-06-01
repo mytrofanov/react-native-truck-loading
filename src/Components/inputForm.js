@@ -10,9 +10,7 @@ const InputForm = () => {
     const trip = useSelector(state => state.truckStore.trip)
     const dispatch = useDispatch();
 
-    const savedTrip = localStorage.getItem('tripInStorage')
-
-    const countAverageWeight = () => {
+     const countAverageWeight = () => {
         let weight = 0
         trip.forEach(item =>
             weight += item.loadWeight
@@ -41,14 +39,9 @@ const InputForm = () => {
     useEffect(() => {
         countAverageWeight()
         console.log('trip in useEffect: ', trip)
-        localStorage.setItem('tripInStorage', trip)
     }, [trip])
     let myEKGTextInput = React.createRef();
     let myWeightTextInput = React.createRef();
-    useEffect(()=>{
-        console.log('savedTrip: ', savedTrip)
-    },[savedTrip])
-    console.log('savedTrip: ', JSON.stringify(savedTrip))
 
 
     return (
