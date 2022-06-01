@@ -5,18 +5,47 @@ import {useDispatch, useSelector} from "react-redux";
 import {inputStyles} from "./inputStyles";
 import {setAverageWeight, setTrip} from "../../redux/truckSlice";
 import TableOfTrips from "./tableOfTrips";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const InputForm = () => {
     const trip = useSelector(state => state.truckStore.trip)
     const dispatch = useDispatch();
 
-     const countAverageWeight = () => {
+    const storeData = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value)
+            await AsyncStorage.setItem('@storage_Key', jsonValue)
+        } catch (e) {
+            console.log('Error from storeData: ', e)
+        }
+    }
+
+    const getDataFromStorage = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@storage_Key')
+            const savedObject = JSON.parse(jsonValue)
+            if (jsonValue != null && trip.length <1) {
+                console.log('savedObject:', savedObject)
+                dispatch(setTrip(savedObject))
+            }
+            // return jsonValue != null ? savedObject : null;
+        } catch(e) {
+            console.log('Error from getData: ', e)
+        }
+    }
+    useEffect(()=>{
+        getDataFromStorage().then(r => console.log('Got saved data from storage'))
+    },[])
+
+
+    const countAverageWeight = () => {
         let weight = 0
         trip.forEach(item =>
             weight += item.loadWeight
         )
         dispatch(setAverageWeight(Math.floor(weight / trip.length)))
     }
+
     const [ekg, setEkg] = useState(0)
     const [truckLoad, setTruckLoad] = useState(0)
     const date = new Date();
@@ -31,17 +60,21 @@ const InputForm = () => {
         }
         }
     ;
-    console.log('hoursAndMinutes: ', hoursAndMinutes);
-    console.log('ekg: ', ekg)
-    console.log('truckLoad: ', truckLoad)
-    console.log('trip.length: ', trip.length)
+    // console.log('hoursAndMinutes: ', hoursAndMinutes);
+    // console.log('ekg: ', ekg)
+    // console.log('truckLoad: ', truckLoad)
+    // console.log('trip.length: ', trip.length)
 
     useEffect(() => {
         countAverageWeight()
         console.log('trip in useEffect: ', trip)
+        storeData(trip).then(r => console.log('trip saved'))
     }, [trip])
+
+
     let myEKGTextInput = React.createRef();
     let myWeightTextInput = React.createRef();
+
 
 
     return (
