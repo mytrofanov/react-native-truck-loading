@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "react-native-truck",
+    "name": "truck",
     "slug": "truckWeight",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/truck.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
