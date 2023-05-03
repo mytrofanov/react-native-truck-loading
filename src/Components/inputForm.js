@@ -7,7 +7,7 @@ import {setAverageWeight, setTrip} from "../../redux/truckSlice";
 import TableOfTrips from "./tableOfTrips";
 
 const InputForm = () => {
-    const trip = useSelector(state => state.truckStore.trip)
+    const trip = useSelector(state => state.truckReducer.trip)
     const dispatch = useDispatch();
 
      const countAverageWeight = () => {

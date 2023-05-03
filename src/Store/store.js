@@ -13,7 +13,7 @@ import {
 // import storage from 'redux-persist/lib/storage';
 import hardSet from "redux-persist/es/stateReconciler/hardSet";
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { AsyncStorage } from 'react-native';
 
 

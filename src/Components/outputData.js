@@ -7,12 +7,15 @@ import {setAverageWeight, setZeroTrip} from "../../redux/truckSlice";
 
 
 const OutputData = () => {
-    const averageWeight = useSelector(state => state.truckStore.averageWeight)
+    const state = useSelector(state => state)
+    console.log('state: ', state);
+    const averageWeight = useSelector(state => state.truckReducer.averageWeight)
     const dispatch = useDispatch();
     const deleteAll = ()=>{
         dispatch(setZeroTrip([]))
         dispatch(setAverageWeight(0))
     }
+
     return (
         <View style={outputStyles.outputContainer}>
             <Button title="ВИДАЛИТИ ВСЕ"
